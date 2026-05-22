@@ -1,15 +1,13 @@
-import type { ReactNode } from "react";
 import Navbar from "./Components/Navbar";
+import { Outlet } from "react-router-dom";
 
-interface LayoutProps {
-  children?: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout() {
   return (
-    <div className="h-screen w-full bg-black/50">
+    <div className="h-screen w-full">
       <Navbar />
-      {children};
+      <div className="min-h-screen pt-18">
+        <Outlet />
+      </div>
     </div>
   );
 }

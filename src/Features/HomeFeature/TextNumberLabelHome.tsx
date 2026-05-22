@@ -18,7 +18,7 @@ export default function TextNumberLabel({
 
   return (
     <div className={`flex ${flexDirectionBasedOnCol} justify-center`}>
-      <p className={`text-${isLarge ? "3xl" : "xl"} font-semibold`}>
+      <p className={`text-${isLarge ? "2xl" : "xl"} font-semibold`}>
         {numberValue}
       </p>{" "}
       <p className={`text-[${isLarge ? "18px" : "13px"}]`}>{textLabel}</p>

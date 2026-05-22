@@ -4,11 +4,7 @@ import Button from "../Components/Button";
 import Form from "../Components/Form";
 import TextLink from "../Components/TextLink";
 import TextLogo from "../Components/TextLogo";
-import {
-  useForm,
-  type SubmitErrorHandler,
-  type SubmitHandler,
-} from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
@@ -47,13 +43,9 @@ export default function SignInPage() {
     navigate("/home");
   };
 
-  const onError: SubmitErrorHandler<SubmittedSignUpData> = (error) => {
-    console.log(error);
-  };
-
   return (
     <div className="h-screen w-full place-content-center">
-      <Form handleSubmit={handleSubmit} onSubmit={onSubmit} onError={onError}>
+      <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
         <div className="flex h-25 w-25 flex-col items-center justify-center gap-2">
           <Image src="/logo.svg" alt="logo" bg={true} />
           <TextLogo />

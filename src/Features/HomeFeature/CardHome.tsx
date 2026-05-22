@@ -26,7 +26,7 @@ const testCards: cardType[] = [
     nextReviewDate: new Date("5/21/2026"),
   },
 ];
-// ------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
 
 export default function CardHome() {
   const navigate = useNavigate();
@@ -41,11 +41,14 @@ export default function CardHome() {
     const nextReviewDateTimestamp = card.nextReviewDate.setHours(0, 0, 0, 0); // keep just date
     const currentDateTimestamp = currentDate.setHours(0, 0, 0, 0); // keep just date
 
-    console.log(nextReviewDateTimestamp, currentDateTimestamp);
     return nextReviewDateTimestamp === currentDateTimestamp ? acc + 1 : acc; // compare dates
   }, 0);
 
   const handleRightSideClick = function () {
+    // 1. Move to the flashcards page
+    // 2. Pass the cards related to the set
+    // 3/ Sem
+    // Supposedly, we should pass the name of the set but in our case, since we only have one premade set, we don't have to worry about that
     navigate("/flashcard");
   };
 

@@ -4,14 +4,16 @@ import Button from "../Components/Button";
 import Form from "../Components/Form";
 import TextLink from "../Components/TextLink";
 import TextLogo from "../Components/TextLogo";
-import {
-  useForm,
-  type SubmitErrorHandler,
-  type SubmitHandler,
-} from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import SpinnerMini from "../Components/SpinnerMini";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useLogin } from "../Features/Authentication/useLogin";
+import { useEffect } from "react";
+import { useUser } from "../Features/Authentication/useUser";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "./LoadingPage";
 
 const SignInSchema = z.object({
   email: z.email().nonempty(),
@@ -22,26 +24,42 @@ export type SubmittedSignInData = z.infer<typeof SignInSchema>;
 
 export default function SignInPage() {
   const navigate = useNavigate();
-  const { register, handleSubmit, formState } = useForm<SubmittedSignInData>({
-    resolver: zodResolver(SignInSchema),
-  });
-
+  const { register, handleSubmit, formState, setError } =
+    useForm<SubmittedSignInData>({
+      resolver: zodResolver(SignInSchema),
+    });
+  const { login, isPending } = useLogin();
+  const { isAuthenticated, isPending: userPending } = useUser();
   const { errors } = formState;
 
-  const onSubmit: SubmitHandler<SubmittedSignInData> = () => {
+  const onSubmit: SubmitHandler<SubmittedSignInData> = async ({
+    email,
+    password,
+  }) => {
     //===============================================
+
     //logic for authentication here...............
+    try {
+      await login({ email, password });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      setError("root", { message: "Incorrect username or password" });
+    }
     //===============================================
-    navigate("/home");
   };
 
-  const onError: SubmitErrorHandler<SubmittedSignInData> = (error) => {
-    console.log(error);
-  };
+  useEffect(
+    function () {
+      if (isAuthenticated) navigate("/home");
+    },
+    [navigate, isAuthenticated],
+  );
+
+  if (userPending) return <LoadingPage />;
 
   return (
     <div className="h-screen w-full place-content-center">
-      <Form handleSubmit={handleSubmit} onSubmit={onSubmit} onError={onError}>
+      <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
         <div className="flex h-25 w-25 flex-col items-center justify-center gap-2">
           <Image src="/logo.svg" alt="logo" bg={true} />
           <TextLogo />
@@ -51,14 +69,18 @@ export default function SignInPage() {
           type="text"
           register={register}
           error={errors?.email?.message}
+          disabled={isPending}
+          value="joshwareps@gmail.com"
         ></Input>
         <Input
           inputName="password"
           type="password"
           register={register}
-          error={errors?.password?.message}
+          error={errors?.password?.message || errors?.root?.message}
+          disabled={isPending}
+          value="qwerty"
         ></Input>
-        <Button>Sign In</Button>
+        <Button>{isPending ? <SpinnerMini /> : "Sign In"}</Button>
         <TextLink to="/signup">Don't have an Account?</TextLink>
       </Form>
     </div>

@@ -1,12 +1,12 @@
-function formatLocalISO(date) {
-  const pad = (num) => String(num).padStart(2, "0");
+function formatLocalISO(date: Date) {
+  const pad = (num: number) => String(num).padStart(2, "0");
   return (
     `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
     `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
   );
 }
 
-function parseLocalISO(str) {
+function parseLocalISO(str: string) {
   const parts = str.match(/(\d+)-(\d+)-(\d+)[ T](\d+):(\d+):(\d+)/);
   if (!parts) return new Date();
   return new Date(
@@ -19,7 +19,17 @@ function parseLocalISO(str) {
   );
 }
 
-function supermemo(item, grade, review_datetime = null) {
+export type Item = {
+  interval: number;
+  repetition: number;
+  efactor: number;
+};
+
+export default function supermemo(
+  item: Item,
+  grade: number,
+  review_datetime = null,
+) {
   let nextInterval;
   let nextRepetition;
   let nextEfactor;
@@ -45,13 +55,13 @@ function supermemo(item, grade, review_datetime = null) {
 
   if (nextEfactor < 1.3) nextEfactor = 1.3;
 
-  let currentReviewDate = review_datetime
+  const currentReviewDate = review_datetime
     ? parseLocalISO(review_datetime)
     : new Date();
   currentReviewDate.setMilliseconds(0);
 
   currentReviewDate.setDate(currentReviewDate.getDate() + nextInterval);
-  let nextReviewDatetime = formatLocalISO(currentReviewDate);
+  const nextReviewDatetime = formatLocalISO(currentReviewDate);
   // ----------------------------------------------
 
   return {

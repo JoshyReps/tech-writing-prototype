@@ -5,5 +5,9 @@
 }
 
 body {
-  background-color: #eaeaea;
+  background-color: color-mix(
+    in oklab,
+    var(--color-black) /* #000 = #000000 */ 50%,
+    transparent
+  );
 }
