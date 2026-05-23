@@ -73,28 +73,28 @@ export default function supermemo(
 }
 
 // Testing
-let item = {
-  interval: 0,
-  repetition: 0,
-  efactor: 2.5,
-};
+// let item = {
+//   interval: 0,
+//   repetition: 0,
+//   efactor: 2.5,
+// };
 
-console.log("First review:");
-item = supermemo(item, 3);
-console.log(item);
+// console.log("First review:");
+// item = supermemo(item, 3);
+// console.log(item);
 
-console.log("2nd Review:");
-item = supermemo(item, 3);
-console.log(item);
+// console.log("2nd Review:");
+// item = supermemo(item, 3);
+// console.log(item);
 
-console.log("3rd Review:");
-item = supermemo(item, 1);
-console.log(item);
+// console.log("3rd Review:");
+// item = supermemo(item, 1);
+// console.log(item);
 
-console.log("4th Review:");
-item = supermemo(item, 3);
-console.log(item);
+// console.log("4th Review:");
+// item = supermemo(item, 3);
+// console.log(item);
 
-console.log("5th Review:");
-item = supermemo(item, 3);
-console.log(item);
+// console.log("5th Review:");
+// item = supermemo(item, 3);
+// console.log(item);

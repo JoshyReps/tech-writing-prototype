@@ -18,7 +18,7 @@ export default function Form<T extends FieldValues>({
 }: FormProps<T>) {
   return (
     <form
-      className="flex min-h-130 flex-col items-center justify-center gap-8 bg-white py-6 shadow-md shadow-black/30"
+      className="xs:w-100 flex min-h-130 w-full flex-col items-center justify-center gap-8 bg-white py-6 shadow-md shadow-black/30"
       onSubmit={handleSubmit(onSubmit)}
     >
       {children}

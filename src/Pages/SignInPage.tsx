@@ -2,7 +2,6 @@ import Image from "../Components/Image";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import Form from "../Components/Form";
-import TextLink from "../Components/TextLink";
 import TextLogo from "../Components/TextLogo";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import SpinnerMini from "../Components/SpinnerMini";
@@ -58,7 +57,7 @@ export default function SignInPage() {
   if (userPending) return <LoadingPage />;
 
   return (
-    <div className="h-screen w-full place-content-center">
+    <div className="flex h-screen w-full items-center justify-center">
       <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
         <div className="flex h-25 w-25 flex-col items-center justify-center gap-2">
           <Image src="/logo.svg" alt="logo" bg={true} />
@@ -70,7 +69,7 @@ export default function SignInPage() {
           register={register}
           error={errors?.email?.message}
           disabled={isPending}
-          value="joshwareps@gmail.com"
+          // value="joshwareps@gmail.com"
         ></Input>
         <Input
           inputName="password"
@@ -78,10 +77,10 @@ export default function SignInPage() {
           register={register}
           error={errors?.password?.message || errors?.root?.message}
           disabled={isPending}
-          value="qwerty"
+          // value="qwerty"
         ></Input>
         <Button>{isPending ? <SpinnerMini /> : "Sign In"}</Button>
-        <TextLink to="/signup">Don't have an Account?</TextLink>
+        {/* <TextLink to="/signup">Don't have an Account?</TextLink> Removed for Simplicity Sake */}
       </Form>
     </div>
   );

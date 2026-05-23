@@ -1,5 +1,5 @@
-import TextNumberLabel from "../Features/HomeFeature/TextNumberLabelHome";
-import CardHome from "../Features/HomeFeature/CardHome";
+import TextNumberLabel from "../Features/HomeFeature/HomeTextNumberLabel";
+import CardHome from "../Features/HomeFeature/HomeCard";
 
 export default function HomePage() {
   const deckCount = 1; // Fixed Because we only have 1 premade flashcard

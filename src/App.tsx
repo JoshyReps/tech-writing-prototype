@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignInPage from "./Pages/SignInPage";
-import SignUpPage from "./Pages/SignUpPage";
 import HomePage from "./Pages/HomePage";
 import FlashcardPage from "./Pages/FlashcardPage";
 import SetCardsPages from "./Pages/SetCardsPages";
@@ -12,11 +11,11 @@ import ProtectedRoute from "./Features/Authentication/ProtectedRoute";
 import Layout from "./Layout";
 import { Toaster } from "react-hot-toast";
 
-// Getting data from supabase
+// Setting up React Query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000 * 3,
+      staleTime: 60 * 1000 * 10,
     },
   },
 });
@@ -29,7 +28,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="signin" element={<SignInPage />} />
-          <Route path="signup" element={<SignUpPage />} />
+          {/* <Route path="signup" element={<SignUpPage />} /> Removed For Simplicity Sake */}
           <Route index element={<Navigate replace to="signin" />} />
           <Route path="*" element={<ErrorPage />} />
           <Route
@@ -57,7 +56,8 @@ export default function App() {
             duration: 5000,
           },
           style: {
-            fontSize: "20px",
+            fontSize: "16px",
+            fontWeight: "bold",
             maxWidth: "400px",
             padding: "16px 24px",
           },

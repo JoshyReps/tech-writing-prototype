@@ -2,12 +2,13 @@
 
 @theme {
   --color-primary: #f27031;
+  --breakpoint-xs: 420px;
 }
 
 body {
-  background-color: color-mix(
-    in oklab,
-    var(--color-black) /* #000 = #000000 */ 50%,
-    transparent
-  );
+  background-color: #6b6b6b;
+}
+
+li {
+  list-style-type: none;
 }

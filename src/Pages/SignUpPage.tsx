@@ -44,7 +44,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="h-screen w-full place-content-center">
+    <div className=" h-screen w-full place-content-center">
       <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
         <div className="flex h-25 w-25 flex-col items-center justify-center gap-2">
           <Image src="/logo.svg" alt="logo" bg={true} />

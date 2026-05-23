@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 export type userReviewCards = {
-  id: number;
+  id?: number;
   user_id: string;
   cardId: number;
   interval: number;
