@@ -10,7 +10,7 @@ import "./index.css";
 import ProtectedRoute from "./Features/Authentication/ProtectedRoute";
 import Layout from "./Layout";
 import { Toaster } from "react-hot-toast";
-
+import { SkeletonTheme } from "react-loading-skeleton";
 // Setting up React Query
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,25 +25,27 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="signin" element={<SignInPage />} />
-          {/* <Route path="signup" element={<SignUpPage />} /> Removed For Simplicity Sake */}
-          <Route index element={<Navigate replace to="signin" />} />
-          <Route path="*" element={<ErrorPage />} />
-          <Route
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="home" element={<HomePage />} />
-            <Route path="flashcard" element={<FlashcardPage />} />
-            <Route path="setcards" element={<SetCardsPages />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <SkeletonTheme baseColor="#7a7a7a" highlightColor="#aaaaaa">
+        <BrowserRouter>
+          <Routes>
+            <Route path="signin" element={<SignInPage />} />
+            {/* <Route path="signup" element={<SignUpPage />} /> Removed For Simplicity Sake */}
+            <Route index element={<Navigate replace to="signin" />} />
+            <Route path="*" element={<ErrorPage />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <Layout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="home" element={<HomePage />} />
+              <Route path="flashcard" element={<FlashcardPage />} />
+              <Route path="setcards" element={<SetCardsPages />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </SkeletonTheme>
       <Toaster
         position="top-center"
         gutter={12}

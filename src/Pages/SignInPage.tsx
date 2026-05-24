@@ -12,7 +12,6 @@ import { useLogin } from "../Features/Authentication/useLogin";
 import { useEffect } from "react";
 import { useUser } from "../Features/Authentication/useUser";
 import { useNavigate } from "react-router-dom";
-import LoadingPage from "./LoadingPage";
 
 const SignInSchema = z.object({
   email: z.email().nonempty(),
@@ -27,8 +26,8 @@ export default function SignInPage() {
     useForm<SubmittedSignInData>({
       resolver: zodResolver(SignInSchema),
     });
-  const { login, isPending } = useLogin();
-  const { isAuthenticated, isPending: userPending } = useUser();
+  const { login, isPending: loginPending } = useLogin();
+  const { isAuthenticated, isPending: initialLoading } = useUser();
   const { errors } = formState;
 
   const onSubmit: SubmitHandler<SubmittedSignInData> = async ({
@@ -54,8 +53,6 @@ export default function SignInPage() {
     [navigate, isAuthenticated],
   );
 
-  if (userPending) return <LoadingPage />;
-
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <Form handleSubmit={handleSubmit} onSubmit={onSubmit}>
@@ -68,18 +65,20 @@ export default function SignInPage() {
           type="text"
           register={register}
           error={errors?.email?.message}
-          disabled={isPending}
-          // value="joshwareps@gmail.com"
+          disabled={loginPending}
+          value="joshuareps@gmail.com"
         ></Input>
         <Input
           inputName="password"
           type="password"
           register={register}
           error={errors?.password?.message || errors?.root?.message}
-          disabled={isPending}
-          // value="qwerty"
+          disabled={loginPending}
+          value="password"
         ></Input>
-        <Button>{isPending ? <SpinnerMini /> : "Sign In"}</Button>
+        <Button>
+          {initialLoading || loginPending ? <SpinnerMini /> : "Sign In"}
+        </Button>
         {/* <TextLink to="/signup">Don't have an Account?</TextLink> Removed for Simplicity Sake */}
       </Form>
     </div>

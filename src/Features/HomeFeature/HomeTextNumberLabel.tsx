@@ -1,4 +1,5 @@
-import SpinnerMini from "../../Components/SpinnerMini";
+import Skeleton from "react-loading-skeleton";
+// import SpinnerMini from "../../Components/SpinnerMini";
 
 interface TextNumberLabelProps {
   numberValue: number;
@@ -20,12 +21,23 @@ export default function TextNumberLabel(props: TextNumberLabelProps) {
 
   return (
     <div className={`flex ${flexDirectionBasedOnCol} justify-center`}>
-      <p
-        className={`text-${isLarge ? "2xl" : "xl"} font-semibold text-${color}-900`}
-      >
-        {isLoading ? <SpinnerMini /> : numberValue}
-      </p>{" "}
-      <p className={`text-[${isLarge ? "18px" : "13px"}]`}>{textLabel}</p>
+      {isLoading ? (
+        <Skeleton
+          style={{
+            maxWidth: "65px",
+            minWidth: "65px",
+          }}
+        />
+      ) : (
+        <>
+          <p
+            className={`text-${isLarge ? "2xl" : "xl"} font-semibold text-${color}-900`}
+          >
+            {numberValue}
+          </p>{" "}
+          <p className={`text-[${isLarge ? "18px" : "13px"}]`}>{textLabel}</p>
+        </>
+      )}
     </div>
   );
 }
