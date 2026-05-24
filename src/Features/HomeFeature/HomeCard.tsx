@@ -48,11 +48,11 @@ export default function CardHome() {
         )}
       </div>
       <div
-        className="over flex h-auto gap-3 rounded-tl-full rounded-bl-full bg-olive-400/60 px-10 py-3 pr-3 shadow-sm shadow-black/30 transition-all hover:bg-olive-500/70 hover:px-12"
+        className="over flex h-auto gap-3 rounded-tl-full rounded-bl-full bg-olive-400/60 px-10 py-3 pr-3 shadow-sm shadow-black/30 brightness-100 transition-all hover:bg-olive-500/70 hover:px-12 hover:brightness-110"
         onClick={handleLeftSideClick}
       >
         <TextNumberLabel
-          color="blue"
+          color="text-blue-900"
           numberValue={currentNumberOfSets}
           textLabel="/Cards"
           col={false}
@@ -60,7 +60,7 @@ export default function CardHome() {
           isLoading={isLoading}
         />
         <TextNumberLabel
-          color="red"
+          color="text-red-900"
           numberValue={currentDueSetCount}
           textLabel="/Due"
           col={false}

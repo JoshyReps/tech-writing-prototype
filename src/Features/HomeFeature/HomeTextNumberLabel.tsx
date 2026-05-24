@@ -31,7 +31,7 @@ export default function TextNumberLabel(props: TextNumberLabelProps) {
       ) : (
         <>
           <p
-            className={`text-${isLarge ? "2xl" : "xl"} font-semibold text-${color}-900`}
+            className={`text-${isLarge ? "2xl" : "xl"} font-semibold ${color}`}
           >
             {numberValue}
           </p>{" "}

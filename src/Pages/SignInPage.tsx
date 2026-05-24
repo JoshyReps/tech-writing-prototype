@@ -66,7 +66,6 @@ export default function SignInPage() {
           register={register}
           error={errors?.email?.message}
           disabled={loginPending}
-          value="joshuareps@gmail.com"
         ></Input>
         <Input
           inputName="password"
@@ -74,7 +73,6 @@ export default function SignInPage() {
           register={register}
           error={errors?.password?.message || errors?.root?.message}
           disabled={loginPending}
-          value="password"
         ></Input>
         <Button>
           {initialLoading || loginPending ? <SpinnerMini /> : "Sign In"}

@@ -113,7 +113,6 @@ export default function FlashcardBack({
       ));
       updatedList = [...listOfCards.slice(1)];
       updatedIncorrectList = [...incorrectCards, updatedCurrentCard];
-      console.log(updatedIncorrectList, " Incorrect Card List --------");
     }
 
     if (updatedList.length === 0) {
@@ -129,7 +128,7 @@ export default function FlashcardBack({
 
       setHasNextRound(false);
       toast.success("Successfully Completed Session");
-      navigate("/home");
+      navigate("/setcards");
     } else {
       // 7. If the list of cards still has an element
       // • Set the list of card to the `updatedList`
