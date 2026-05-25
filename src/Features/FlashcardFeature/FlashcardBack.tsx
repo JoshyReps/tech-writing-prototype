@@ -107,7 +107,7 @@ export default function FlashcardBack({
       toast(() => (
         <FlashcardCustomToast>
           Card will show up again, until you answer
-          <span className="font-semibold text-green-700"> 4</span> and
+          <span className="font-semibold text-green-700"> 4</span> or
           <span className="font-semibold text-green-800"> 5</span>
         </FlashcardCustomToast>
       ));
